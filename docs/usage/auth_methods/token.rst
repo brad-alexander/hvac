@@ -39,7 +39,7 @@ Lookup and revoke tokens via a token accessor:
 
     same_token = client.lookup_token(token_accessor, accessor=True)
     client.revoke_token(token_accessor, accessor=True)
-    
+
 
 Wrapping/unwrapping a token:
 
@@ -47,6 +47,7 @@ Wrapping/unwrapping a token:
 
     wrap = client.create_token(policies=['root'], lease='1h', wrap_ttl='1m')
     result = self.client.unwrap(wrap['wrap_info']['token'])
+
 
 Login with a wrapped token:
 
