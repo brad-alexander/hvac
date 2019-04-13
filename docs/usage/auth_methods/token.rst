@@ -45,14 +45,14 @@ Wrapping/unwrapping a token:
 
 .. code:: python
 
-    wrapped = client.create_token(policies=['root'], lease='1h', wrap_ttl='1m')
+    wrap = client.create_token(policies=['root'], lease='1h', wrap_ttl='1m')
     result = self.client.unwrap(wrap['wrap_info']['token'])
 
 Login with a wrapped token:
 
 .. code:: python
 
-    wrapped = client.create_token(policies=['root'], lease='1h', wrap_ttl='1m')
+    wrap = client.create_token(policies=['root'], lease='1h', wrap_ttl='1m')
     new_client = hvac.Client()
-    new_client.auth_cubbyhole(wrapped_token['wrap_info']['token'])
-    # new_client.token != wrapped_token['wrap_info']['token']
+    new_client.auth_cubbyhole(wrap['wrap_info']['token'])
+    assert new_client.token != wrapped_token['wrap_info']['token']
